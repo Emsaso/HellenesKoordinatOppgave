@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Image = Windows.UI.Xaml.Controls.Image;
@@ -45,6 +46,9 @@ namespace HellenesKoordinatOppgave
             txt1.Text += "\n" + info1.Directory.Name + "\\" + info1.Name;
             txt2.Text += "\n" + info2.Directory.Name + "\\" + info2.Name;
             txt3.Text += "\n" + info3.Directory.Name + "\\" + info3.Name;
+
+            //ImageProperties props = await info1.Properties.GetImagePropertiesAsync();
+
         }
     }
 }
