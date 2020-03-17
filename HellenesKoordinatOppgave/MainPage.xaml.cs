@@ -7,6 +7,8 @@ using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Image = Windows.UI.Xaml.Controls.Image;
+using System.Drawing.Imaging;
+//using System.Windows.Forms;
 
 
 namespace HellenesKoordinatOppgave
@@ -47,8 +49,16 @@ namespace HellenesKoordinatOppgave
             txt2.Text += "\n" + info2.Directory.Name + "\\" + info2.Name;
             txt3.Text += "\n" + info3.Directory.Name + "\\" + info3.Name;
 
+            //Image theImage = new Image();
+            //theImage.Source = new BitmapImage(new Uri(image1.BaseUri, "Assets/DJI_0025.JPG"));
+            //PropertyItem[] propItems = theImage.PropertyItems;
+
             //ImageProperties props = await info1.Properties.GetImagePropertiesAsync();
 
         }
+
+        //private void ExtractMetaData(PaintEventArgs e)
+        //{
+        //}
     }
 }
