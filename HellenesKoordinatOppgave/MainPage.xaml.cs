@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Drawing;
-using System.Globalization;
+using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using Windows.Storage.FileProperties;
+using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
+using MetadataExtractor;
+using MetadataExtractor.Formats.Exif;
+using Directory = MetadataExtractor.Directory;
+//using Directory = System.IO.Directory;
 using Image = Windows.UI.Xaml.Controls.Image;
-using System.Drawing.Imaging;
+//using System.Drawing.Imaging;
 //using System.Windows.Forms;
 
 
@@ -15,6 +17,7 @@ namespace HellenesKoordinatOppgave
 {
     public sealed partial class MainPage : Page
     {
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -42,23 +45,27 @@ namespace HellenesKoordinatOppgave
             FileInfo info1 = new FileInfo("Assets/DJI_0025.JPG");
             FileInfo info2 = new FileInfo("Assets/DJI_0027.JPG");
             FileInfo info3 = new FileInfo("Assets/DJI_0028.JPG");
-            txt1.Text = info1.FullName;
-            txt2.Text = info2.FullName;
-            txt3.Text = info3.FullName;
-            txt1.Text += "\n" + info1.Directory.Name + "\\" + info1.Name;
-            txt2.Text += "\n" + info2.Directory.Name + "\\" + info2.Name;
-            txt3.Text += "\n" + info3.Directory.Name + "\\" + info3.Name;
+       
 
-            //Image theImage = new Image();
-            //theImage.Source = new BitmapImage(new Uri(image1.BaseUri, "Assets/DJI_0025.JPG"));
-            //PropertyItem[] propItems = theImage.PropertyItems;
+            IEnumerable<Directory> directories1 = ImageMetadataReader.ReadMetadata("Assets\\DJI_0025.JPG");
+            IEnumerable<Directory> directories2 = ImageMetadataReader.ReadMetadata("Assets\\DJI_0027.JPG");
+            IEnumerable<Directory> directories3 = ImageMetadataReader.ReadMetadata("Assets\\DJI_0028.JPG");
 
-            //ImageProperties props = await info1.Properties.GetImagePropertiesAsync();
+            foreach (var directory in directories1) foreach (var tag in directory.Tags) if (tag.Name.Contains("GPS")) txt1.Text += ($"{directory.Name} - {tag.Name} = {tag.Description}\n");
+            foreach (var directory in directories2) foreach (var tag in directory.Tags) if (tag.Name.Contains("GPS")) txt2.Text += ($"{directory.Name} - {tag.Name} = {tag.Description}\n");
+            foreach (var directory in directories3) foreach (var tag in directory.Tags) if (tag.Name.Contains("GPS")) txt3.Text += ($"{directory.Name} - {tag.Name} = {tag.Description}\n"); 
+            
+            //var subIfdDirectory1 = directories1.OfType<ExifSubIfdDirectory>().FirstOrDefault();
+            //var subIfdDirectory2 = directories2.OfType<ExifSubIfdDirectory>().FirstOrDefault();
+            //var subIfdDirectory3 = directories3.OfType<ExifSubIfdDirectory>().FirstOrDefault();
+            //var dateTime1 = subIfdDirectory1?.GetDescription(ExifDirectoryBase.TagAperture);
+            //var dateTime2 = subIfdDirectory2?.GetDescription(ExifDirectoryBase.Tag35MMFilmEquivFocalLength);
+            //var dateTime3 = subIfdDirectory3?.GetDescription(ExifDirectoryBase.TagDateTimeOriginal);
+            //txt1.Text = dateTime1 ?? "No Info";
+            //txt2.Text = dateTime2 ?? "No Info";
+            //txt3.Text = dateTime3 ?? "No Info";
+
 
         }
-
-        //private void ExtractMetaData(PaintEventArgs e)
-        //{
-        //}
     }
 }
