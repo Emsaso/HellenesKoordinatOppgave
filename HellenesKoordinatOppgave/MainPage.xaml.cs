@@ -36,35 +36,66 @@ namespace HellenesKoordinatOppgave
             StackPanel2.Children.Add(txt1);
             StackPanel4.Children.Add(txt2);
             StackPanel6.Children.Add(txt3);
-       
+
 
             IEnumerable<Directory> directories1 = ImageMetadataReader.ReadMetadata("Assets\\DJI_0025.JPG");
             IEnumerable<Directory> directories2 = ImageMetadataReader.ReadMetadata("Assets\\DJI_0027.JPG");
             IEnumerable<Directory> directories3 = ImageMetadataReader.ReadMetadata("Assets\\DJI_0028.JPG");
-
+            string temp1 = "";
+            string temp2 = "";
+            string temp3 = "";
             foreach (var directory in directories1)
-            foreach (var tag in directory.Tags)
-            {
-                if (tag.Name.Contains("GPS"))
+                foreach (var tag in directory.Tags)
                 {
-                    txt1.Text += ($"{directory.Name} - {tag.Name} = {tag.Description}\n");
+                    if (tag.Name.Contains("Latitude") && !tag.Name.Contains("Ref")
+                        || tag.Name.Contains("Longitude") && !tag.Name.Contains("Ref")
+                        || tag.Name.Contains("Altitude") && !tag.Name.Contains("Ref"))
+                    {
+                        var output = ($"{tag.Name} = {tag.Description}\n").Remove(0, 4);
+                        txt1.Text += output;
+                        temp1 += output;
+                    }
                 }
-            }
             foreach (var directory in directories2)
-            foreach (var tag in directory.Tags)
-            {
-                if (tag.Name.Contains("GPS"))
+                foreach (var tag in directory.Tags)
                 {
-                    txt2.Text += ($"{directory.Name} - {tag.Name} = {tag.Description}\n");
+                    if (tag.Name.Contains("Latitude") && !tag.Name.Contains("Ref")
+                        || tag.Name.Contains("Longitude") && !tag.Name.Contains("Ref")
+                        || tag.Name.Contains("Altitude") && !tag.Name.Contains("Ref"))
+                    {
+                        var output = ($"{tag.Name} = {tag.Description}\n").Remove(0, 4);
+                        txt2.Text += output;
+                        temp2 += output;
+                    }
                 }
-            }
             foreach (var directory in directories3)
-            foreach (var tag in directory.Tags)
-            {
-                if (tag.Name.Contains("GPS"))
+                foreach (var tag in directory.Tags)
                 {
-                    txt3.Text += ($"{directory.Name} - {tag.Name} = {tag.Description}\n");
+                    if (tag.Name.Contains("Latitude") && !tag.Name.Contains("Ref")
+                        || tag.Name.Contains("Longitude") && !tag.Name.Contains("Ref")
+                        || tag.Name.Contains("Altitude") && !tag.Name.Contains("Ref"))
+                    {
+                        var output = ($"{tag.Name} = {tag.Description}\n").Remove(0, 4);
+                        txt3.Text += output;
+                        temp3 += output;
+                    }
                 }
+
+            if (temp1 == temp2)
+            {
+                txt1.Text += "\nPicture 1 & 2 are taken at the same place";
+                txt2.Text += "\nPicture 2 & 1 are taken at the same place";
+            }
+            if (temp2 == temp3)
+            {
+                txt2.Text += "\nPicture 2 & 3 are taken at the same place";
+                txt3.Text += "\nPicture 3 & 2 are taken at the same place";
+
+            }
+            if (temp3 == temp1)
+            {
+                txt3.Text += "\nPicture 3 & 1 are taken at the same place";
+                txt1.Text += "\nPicture 1 & 3 are taken at the same place";
             }
         }
     }
