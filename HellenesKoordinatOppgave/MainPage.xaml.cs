@@ -90,7 +90,6 @@ namespace HellenesKoordinatOppgave
             {
                 txt2.Text += "\nPicture 2 & 3 are taken at the same place";
                 txt3.Text += "\nPicture 3 & 2 are taken at the same place";
-
             }
             if (temp3 == temp1)
             {
