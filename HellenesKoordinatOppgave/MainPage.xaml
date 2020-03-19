@@ -8,31 +8,29 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*"></ColumnDefinition>
-      <ColumnDefinition Width="*"></ColumnDefinition>
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*"></RowDefinition>
-      <RowDefinition Height="*"></RowDefinition>
-      <RowDefinition Height="*"></RowDefinition>
-    </Grid.RowDefinitions>
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Image x:Name="Image1" Grid.Column="0" Grid.Row="0" />
+        <TextBlock x:Name="Description1" Grid.Column="1" Grid.Row="0"/>
 
-      <StackPanel Grid.Column="0" Grid.Row="0" x:Name="StackPanel1">
-      </StackPanel>
-      <StackPanel Grid.Column="1" Grid.Row="0" x:Name="StackPanel2">
-      </StackPanel>
+        <Image x:Name="Image2" Grid.Column="0" Grid.Row="1" />
+        <TextBlock x:Name="Description2" Grid.Column="1" Grid.Row="1"/>
 
-      <StackPanel Grid.Column="0" Grid.Row="1" x:Name="StackPanel3">
-      </StackPanel>
-      <StackPanel Grid.Column="1" Grid.Row="1" x:Name="StackPanel4">
-      </StackPanel>
+        <StackPanel x:Name="StackPanel1" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">
+            <TextBlock Text="Please select image nr.1:" TextAlignment="Center"/>
+        </StackPanel>
 
-      <StackPanel Grid.Column="0" Grid.Row="2" x:Name="StackPanel5">
-      </StackPanel>
-      <StackPanel Grid.Column="1" Grid.Row="2" x:Name="StackPanel6">
-      </StackPanel>
+        <StackPanel x:Name="StackPanel2" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
+            <TextBlock Text="Please select image nr.2:" TextAlignment="Center"/>
+        </StackPanel>
 
-  </Grid>
+    </Grid>
 </Page>
