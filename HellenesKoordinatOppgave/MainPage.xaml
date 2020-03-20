@@ -12,23 +12,27 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Image x:Name="Image1" Grid.Column="0" Grid.Row="0" />
-        <TextBlock x:Name="Description1" Grid.Column="1" Grid.Row="0"/>
+        <Image x:Name="Image1" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" />
+        <TextBlock x:Name="Description1" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="0"/>
 
-        <Image x:Name="Image2" Grid.Column="0" Grid.Row="1" />
-        <TextBlock x:Name="Description2" Grid.Column="1" Grid.Row="1"/>
+        <Image x:Name="Image2" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" />
+        <TextBlock x:Name="Description2" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1"/>
 
         <StackPanel x:Name="StackPanel1" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">
             <TextBlock Text="Please select image nr.1:" TextAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel x:Name="StackPanel2" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
+            <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" x:Name="EqualityChecker" TextAlignment="Center"/>
+
+        <StackPanel x:Name="StackPanel2" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center">
             <TextBlock Text="Please select image nr.2:" TextAlignment="Center"/>
         </StackPanel>
 
