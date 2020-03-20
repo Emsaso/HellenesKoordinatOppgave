@@ -30,10 +30,11 @@ namespace HellenesKoordinatOppgave
                     foreach (var tag in directory.Tags)
                     {
                         if (tag.Name.Contains("Latitude") && !tag.Name.Contains("Ref")
-                                || tag.Name.Contains("Longitude") && !tag.Name.Contains("Ref")
-                                || tag.Name.Contains("Altitude") && !tag.Name.Contains("Ref"))
+                         || tag.Name.Contains("Longitude") && !tag.Name.Contains("Ref")
+                         || tag.Name.Contains("Altitude") && !tag.Name.Contains("Ref")
+                         || directory.Name.Contains("DJI Makernote") && tag.Name.Contains("Camera"))
                         {
-                            output += ($"{tag.Name} = {tag.Description}\n").Remove(0, 4);
+                            output += ($"{tag.Name} = {tag.Description}\n");
                         }
                     }
                 }
