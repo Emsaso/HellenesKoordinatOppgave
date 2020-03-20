@@ -32,7 +32,7 @@ namespace HellenesKoordinatOppgave
                         if (tag.Name.Contains("Latitude") && !tag.Name.Contains("Ref")
                          || tag.Name.Contains("Longitude") && !tag.Name.Contains("Ref")
                          || tag.Name.Contains("Altitude") && !tag.Name.Contains("Ref")
-                         || directory.Name.Contains("DJI Makernote") && tag.Name.Contains("Camera"))
+                         || directory.Name.Contains("DJI Makernote") && tag.Name.Contains("Camera") && !tag.Name.Contains("Roll"))
                         {
                             output += ($"{tag.Name} = {tag.Description}\n");
                         }
